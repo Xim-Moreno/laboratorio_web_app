@@ -1,0 +1,41 @@
+<header>
+  <ng-container *ngIf="!patientAuthCheck() && !medicoAuthCheck() && !labAuthCheck() && !receptionAuthCheck() && !adminAuthCheck()">
+    <h2><a (click)="goToHome()" style="cursor: pointer;">Laboratorio clínico San José</a></h2>
+    <img (click)="goToHome()" style="cursor: pointer;" src="assets/images/logo.png" alt="logo" class="logo"/>
+  </ng-container>
+
+  <ng-container *ngIf="patientAuthCheck() && !medicoAuthCheck() && !labAuthCheck() && !receptionAuthCheck() && !adminAuthCheck()">
+    <h2><a (click)="goToPatient()" style="cursor: pointer;">Laboratorio clínico San José</a></h2>
+    <img (click)="goToPatient()" style="cursor: pointer;" src="assets/images/logo.png" alt="logo" class="logo-auth"/>
+    <img src="assets/images/bell.png" alt="bell" class="bell"/>
+    <a (click)="onLogout()" class="text">Cerrar sesión</a>
+  </ng-container>
+
+  <ng-container *ngIf="medicoAuthCheck() && !patientAuthCheck() && !labAuthCheck() && !receptionAuthCheck() && !adminAuthCheck()">
+    <h2><a (click)="goToMedico()" style="cursor: pointer;">Laboratorio clínico San José</a></h2>
+    <img (click)="goToMedico()" style="cursor: pointer;" src="assets/images/logo.png" alt="logo" class="logo-auth"/>
+    <img src="assets/images/bell.png" alt="bell" class="bell"/>
+    <a (click)="onLogout()" class="text">Cerrar sesión</a>
+  </ng-container>
+
+  <ng-container *ngIf="labAuthCheck() && !patientAuthCheck() && !medicoAuthCheck() && !receptionAuthCheck() && !adminAuthCheck()">
+    <h2><a (click)="goToLab()" style="cursor: pointer;">Laboratorio clínico San José</a></h2>
+    <img (click)="goToLab()" style="cursor: pointer;" src="assets/images/logo.png" alt="logo" class="logo-auth"/>
+    <img src="assets/images/bell.png" alt="bell" class="bell"/>
+    <a (click)="onLogout()" class="text">Cerrar sesión</a>
+  </ng-container>
+
+  <ng-container *ngIf="receptionAuthCheck() && !labAuthCheck() && !patientAuthCheck() && !medicoAuthCheck() && !adminAuthCheck()">
+    <h2><a (click)="goToReception()" style="cursor: pointer;">Laboratorio clínico San José</a></h2>
+    <img (click)="goToReception()" style="cursor: pointer;" src="assets/images/logo.png" alt="logo" class="logo-auth"/>
+    <img src="assets/images/bell.png" alt="bell" class="bell"/>
+    <a (click)="onLogout()" class="text">Cerrar sesión</a>
+  </ng-container>
+
+  <ng-container *ngIf="adminAuthCheck() && !receptionAuthCheck() && !labAuthCheck() && !patientAuthCheck() && !medicoAuthCheck()">
+    <h2><a (click)="goToAdmin()" style="cursor: pointer;">Laboratorio clínico San José</a></h2>
+    <img (click)="goToAdmin()" style="cursor: pointer;" src="assets/images/logo.png" alt="logo" class="logo-auth"/>
+    <img src="assets/images/bell.png" alt="bell" class="bell"/>
+    <a (click)="onLogout()" class="text">Cerrar sesión</a>
+  </ng-container>
+</header>

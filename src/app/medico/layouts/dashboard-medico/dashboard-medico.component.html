@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/medico.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column"></div>
+  <div class="column"></div>
+  <div class="column"></div>
+</div>
+<div class="row">
+  <div class="column">
+    <h2>Encuentra a tus pacientes</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <form [formGroup]="myForm">
+      <div class="wrap-input">
+        <input class="input"
+          type="email"
+          formControlName="patient_id"
+          placeholder="ID del paciente">
+        <span class="focus-input"></span>
+      </div>
+      <div *ngIf="myForm.get('patient_id')?.invalid && (myForm.get('patient_id')?.dirty || myForm.get('patient_id')?.touched)">
+        <span class="error-msg">
+            <span *ngIf="myForm.get('patient_id')?.errors?.['minlength']">Debe ingresar un número de usuario válido.</span>
+            <span *ngIf="myForm.get('patient_id')?.errors?.['maxlength']">Debe ingresar un número de usuario válido.</span>
+        </span>
+    </div>
+    </form>
+  </div>
+  <div class="column">
+    <button (click)="buscarPaciente()" class="button" [disabled]="myForm.invalid">Buscar</button>
+  </div>
+</div>
+<div class="row">
+  <div class="column" style="text-align: center;">
+    <button (click)="goToRegistroPaciente()" class="button">Registrar paciente</button>
+  </div>
+  <div class="column" style="text-align: center;">
+    <button (click)="goToSolicitudPaciente()" class="button">Solicitud de cita</button>
+  </div>
+</div>

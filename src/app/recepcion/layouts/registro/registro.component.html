@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/recepcion.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column">
+    <span class="register-form-title">
+      Registra un nuevo paciente
+  </span>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <form style="width:100%;"
+        autocomplete="off"
+        [formGroup]="myForm"
+        (ngSubmit)="register()"
+        >
+
+
+      <!-- Campo de nombre -->
+      <div class="wrap-input">
+        <span class="label-input">Nombre</span>
+        <input class="input"
+          type="email"
+          formControlName="name"
+          placeholder="Ingrese su nombre">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Mensajes de error -->
+      <div *ngIf="myForm.get('name')?.invalid && (myForm.get('name')?.dirty || myForm.get('name')?.touched)">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('name')?.errors?.['required']">El campo es obligatorio.</span>
+        </span>
+      </div>
+
+      <!-- Campo de apellidos -->
+      <div class="wrap-input">
+        <span class="label-input">Apellidos</span>
+        <input class="input"
+          type="email"
+          formControlName="lastname"
+          placeholder="Ingrese sus apellidos">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Mensajes de error -->
+      <div *ngIf="myForm.get('lastname')?.invalid && (myForm.get('lastname')?.dirty || myForm.get('lastname')?.touched)">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('lastname')?.errors?.['required']">El campo es obligatorio.</span>
+        </span>
+      </div>
+
+      <!-- Campo de fecha de nacimiento -->
+      <div class="wrap-input">
+        <span class="label-input">Fecha de nacimiento</span>
+        <input class="input"
+          type="date"
+          formControlName="birth"
+          placeholder="Seleccione su fecha de nacimiento">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Mensajes de error -->
+      <div *ngIf="myForm.get('birth')?.invalid && (myForm.get('birth')?.dirty || myForm.get('birth')?.touched)">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('birth')?.errors?.['required']">El campo es obligatorio.</span>
+        </span>
+      </div>
+
+      <!-- Campo de género -->
+      <div class="wrap-input">
+        <span class="label-input">Género</span>
+        <select class="input" formControlName="gender">
+          <option value="">Seleccione su género</option>
+          <option value="F">Femenino</option>
+          <option value="M">Masculino</option>
+          <option value="none">Prefiero no decir</option>
+        </select>
+        <span class="focus-input"></span>
+      </div>
+      <!-- Mensajes de error -->
+      <div *ngIf="myForm.get('gender')?.invalid && (myForm.get('gender')?.dirty || myForm.get('gender')?.touched)">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('gender')?.errors?.['required']">El campo es obligatorio.</span>
+        </span>
+      </div>
+
+      <!-- Campo de número de teléfono -->
+      <div class="wrap-input">
+        <span class="label-input">Número de teléfono</span>
+        <input class="input"
+          type="tel"
+          formControlName="phone"
+          placeholder="Ingrese su número de teléfono">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Mensajes de error -->
+      <div *ngIf="myForm.get('phone')?.invalid && (myForm.get('phone')?.dirty || myForm.get('phone')?.touched)">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('phone')?.errors?.['required']">El campo es obligatorio.</span>
+          <span *ngIf="myForm.get('phone')?.errors?.['minlength']">Debe ingresar un número de teléfono válido.</span>
+          <span *ngIf="myForm.get('phone')?.errors?.['maxlength']">Debe ingresar un número de teléfono válido.</span>
+        </span>
+      </div>
+
+    <!-- Campo de contraseña -->
+    <div class="wrap-input">
+      <span class="label-input">Contraseña</span>
+      <input class="input"
+        type="password"
+        formControlName="password"
+        placeholder="Crear una contraseña">
+      <span class="focus-input"></span>
+    </div>
+    <!-- Mensajes de error -->
+    <div *ngIf="myForm.get('password')?.invalid && (myForm.get('password')?.dirty || myForm.get('password')?.touched)">
+      <span class="error-msg">
+        <span *ngIf="myForm.get('password')?.errors?.['required']">El campo es obligatorio.</span>
+        <span *ngIf="myForm.get('password')?.errors?.['minlength']">Debe ingresar una contraseña de mínimo 10 caracteres.</span>
+      </span>
+    </div>
+
+
+      <div class="container-register">
+          <div>
+              <button class="button"
+                      [disabled]="myForm.invalid"
+                      type="submit">
+                  Registrar paciente
+              </button>
+          </div>
+      </div>
+  </form>
+  </div>
+  <div class="column"></div>
+
+</div>

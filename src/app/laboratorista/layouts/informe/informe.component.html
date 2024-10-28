@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/laboratorista.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column">
+    <span class="register-form-title">
+      Informe {{current_month}}, {{current_year}}
+    </span>
+  </div>
+  <div class="column"></div>
+</div>
+
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <p class="text"><strong>Nombre completo: </strong>{{ userName }} {{ userLastname }}<br>
+    <strong>Periodo: </strong>{{current_month}}, {{current_year}}<br><br></p>
+
+    <h1 style="font-size: 20px;">Exámenes realizados</h1>
+    <div id="tableContainer">
+      <table id="dynamicTable">
+            <thead>
+                <tr>
+                  <th class="text">Fecha</th>
+                  <th class="text">Análisis realizado</th>
+                  <th class="text">Paciente atendido</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let historial of comision_historiales">
+                <td class="text" style="font-weight: 350;">{{ historial.date }}</td>
+                <td class="text" style="font-weight: 350;">{{ historial.analysis }}</td>
+                <td class="text" style="font-weight: 350;">{{ historial.patient_id }}</td>
+              </tr>
+              <tr *ngIf="comision_historiales.length === 0" class="emptyRow">
+                <td colspan="3">No hay datos disponibles.</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h1 style="font-size: 20px;">Total de exámenes por tipo</h1>
+    <div id="tableContainer">
+      <table id="dynamicTable">
+        <thead>
+            <tr>
+                <th class="text">Análisis</th>
+                <th class="text">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <th class="text" style="font-weight: 350;">Hemograma completo</th>
+              <td>{{ analysisSums['Hemograma completo'] }}</td>
+            </tr>
+            <tr>
+              <th class="text" style="font-weight: 350;">Perfil lipídico</th>
+              <td>{{ analysisSums['Perfil lipidico'] }}</td>
+            </tr>
+            <tr>
+              <th class="text" style="font-weight: 350;">Glucosa en sangre</th>
+              <td>{{ analysisSums['Glucosa en sangre'] }}</td>
+            </tr>
+            <tr>
+              <th class="text" style="font-weight: 350;">Examen general de orina</th>
+              <td>{{ analysisSums['Examen general de orina'] }}</td>
+            </tr>
+            <tr>
+              <th class="text" style="font-weight: 350;">Prueba de embarazo en sangre</th>
+              <td>{{ analysisSums['Prueba de embarazo en sangre'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  <h1 style="font-size: 20px;"> Total de comisiones: ${{comision_total}}</h1>
+  </div>
+  <div class="column"></div>
+</div>
+
+<div class="row">
+  <div class="column"></div>
+  <div class="column" style="text-align: center;">
+    <button (click)="volver()" class="button">Volver</button>
+  </div>
+  <div class="column"></div>
+</div>

@@ -1,0 +1,280 @@
+<form [formGroup]="formSeleccionar" (ngSubmit)="seleccionarExamen()">
+  <div class="row">
+    <div class="column">
+      <h1>Bienvenid&commat;, {{userName}}</h1>
+      <img src="assets/images/laboratorista.png" alt="logo" class="logo"/>
+    </div>
+    <div class="column" style="text-align: center;">
+      <span class="register-form-title">
+        Registrar resultados
+      </span>
+    </div>
+    <div class="column"></div>
+  </div>
+  <ng-container *ngIf="!this.analysis1 && !this.analysis2 && !this.analysis3 && !this.analysis3 && !this.analysis4 && !this. analysis5">
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <div class="wrap-input">
+        <!-- Campo de examen -->
+        <span class="label-input">Seleccione el examen a registrar</span>
+        <select id="analysis" class="input" formControlName="analysis">
+          <option *ngFor="let option of options" [value]="option.value">
+            {{ option.name }}
+          </option>
+        </select>
+        <span class="focus-input"></span>
+      </div>
+      <!-- Número de paciente -->
+      <div class="wrap-input">
+        <span class="label-input">Número de paciente</span>
+        <input class="input" type="email" formControlName="patient_id" placeholder="ID del paciente para el que se solicita.">
+        <span class="focus-input"></span>
+      </div>
+      <div *ngIf="formSeleccionar.get('patient_id')?.invalid && (formSeleccionar.get('patient_id')?.dirty || formSeleccionar.get('patient_id')?.touched)">
+        <span class="error-msg">
+            <span *ngIf="formSeleccionar.get('patient_id')?.errors?.['required']">El número de usuario es obligatorio.</span>
+            <span *ngIf="formSeleccionar.get('patient_id')?.errors?.['minlength']">Debe ingresar un número de usuario válido.</span>
+            <span *ngIf="formSeleccionar.get('patient_id')?.errors?.['maxlength']">Debe ingresar un número de usuario válido.</span>
+        </span>
+      </div>
+      <!-- Fecha de examen-->
+      <div class="wrap-input">
+        <span class="label-input">Fecha en la que se realizó el examen</span>
+        <input class="input"
+          type="date"
+          formControlName="date"
+          placeholder="Las citas son de lunes a viernes">
+        <span class="focus-input"></span>
+      </div>
+      <div *ngIf="formSeleccionar.get('date')?.touched">
+        <span class="error-msg">
+          <span *ngIf="formSeleccionar.get('date')?.errors?.['required']">El campo es obligatorio.</span>
+        </span>
+      </div>
+      <div class="wrap-input" style="text-align: center;">
+        <button class="button"
+          [disabled]="formSeleccionar.invalid"
+          type="submit">
+          Buscar
+        </button>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+</ng-container>
+</form>
+
+<ng-container *ngIf="this.citaEncontrada">
+<form [formGroup]="formSeleccionar" (ngSubmit)="registrarExamen()">
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <ng-container *ngIf="analysis1 && !analysis2 && !analysis3 && !analysis4 && !analysis5">
+      <span class="register-form-title" style="font-size: 24px;">
+        Hemograma completo
+      </span>
+      <!-- Recuento de glóbulos rojos -->
+      <div class="wrap-input">
+        <span class="label-input">Glóbulos rojos</span>
+        <input class="input" type="email" formControlName="globulos_rojos" placeholder="millones de células / l">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Recuento de glóbulos blancos -->
+      <div class="wrap-input">
+        <span class="label-input">Glóbulos blancos</span>
+        <input class="input" type="email" formControlName="globulos_blancos" placeholder="millones de células / l">
+        <span class="focus-input"></span>
+      </div>
+      <!--  Hemoglobina -->
+      <div class="wrap-input">
+        <span class="label-input">Hemoglobina</span>
+        <input class="input" type="email" formControlName="hemoglobina" placeholder="g / dl">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Hematrocito -->
+      <div class="wrap-input">
+        <span class="label-input">Hematrocito</span>
+        <input class="input" type="email" formControlName="hematrocito" placeholder="%">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Recuento de plaquetas -->
+      <div class="wrap-input">
+        <span class="label-input">Plaquetas</span>
+        <input class="input" type="email" formControlName="plaquetas" placeholder="millones / l">
+        <span class="focus-input"></span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!analysis1 && analysis2 && !analysis3 && !analysis4 && !analysis5">
+      <span class="register-form-title" style="font-size: 24px;">
+        Perfil lipídico
+      </span>
+      <!-- Colesterol total -->
+      <div class="wrap-input">
+        <span class="label-input">Colesterol total</span>
+        <input class="input" type="email" formControlName="colesterol" placeholder="mg / dl">
+        <span class="focus-input"></span>
+      </div>
+      <!-- HDL -->
+      <div class="wrap-input">
+        <span class="label-input">HDL</span>
+        <input class="input" type="email" formControlName="hdl" placeholder="mg / dl">
+        <span class="focus-input"></span>
+      </div>
+      <!-- LDL -->
+      <div class="wrap-input">
+        <span class="label-input">LDL</span>
+        <input class="input" type="email" formControlName="ldl" placeholder="mg / dl">
+        <span class="focus-input"></span>
+      </div>
+      <!-- VLDL -->
+      <div class="wrap-input">
+        <span class="label-input">VLDL</span>
+        <input class="input" type="email" formControlName="vldl" placeholder="mg / dl">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Triglicéridos -->
+      <div class="wrap-input">
+        <span class="label-input">Triglicéridos</span>
+        <input class="input" type="email" formControlName="trigliceridos" placeholder="mg / dl">
+        <span class="focus-input"></span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!analysis1 && !analysis2 && analysis3 && !analysis4 && !analysis5">
+      <span class="register-form-title" style="font-size: 24px;">
+        Glucosa en sangre
+      </span>
+      <!-- Glucemia -->
+      <div class="wrap-input">
+        <span class="label-input">Glucemia</span>
+        <input class="input" type="email" formControlName="glucemia" placeholder="mg / dl">
+        <span class="focus-input"></span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!analysis1 && !analysis2 && !analysis3 && analysis4 && !analysis5">
+      <span class="register-form-title" style="font-size: 24px;">
+        Examen general de orina
+      </span>
+      <!-- Color -->
+      <div class="wrap-input">
+        <p><span class="label-input" style="font-weight: 500;">Examen visual</span></p>
+        <span class="label-input">Color</span>
+        <input class="input" type="email" formControlName="color" placeholder="Descripción">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Aspecto -->
+      <div class="wrap-input">
+        <span class="label-input">Aspecto</span>
+        <input class="input" type="email" formControlName="aspecto" placeholder="Descripción">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Densidad -->
+      <div class="wrap-input">
+        <p><span class="label-input" style="font-weight: 500;">Examen químico</span></p>
+        <span class="label-input">Densidad</span>
+        <input class="input" type="email" formControlName="densidad" placeholder="ppm">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Acidez -->
+      <div class="wrap-input">
+        <span class="label-input">Acidez</span>
+        <input class="input" type="email" formControlName="pH" placeholder="pH">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Glucosa -->
+      <div class="wrap-input">
+        <span class="label-input">Glucosa</span>
+        <input class="input" type="email" formControlName="glucosa" placeholder="mg /dl">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Proteínas -->
+      <div class="wrap-input">
+        <span class="label-input">Proteínas</span>
+        <input class="input" type="email" formControlName="proteinas" placeholder="mg / dl">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Cetonas -->
+      <div class="wrap-input">
+        <span class="label-input">Cetonas</span>
+        <input class="input" type="email" formControlName="cetonas" placeholder="Presente o ausente">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Bilirrubina -->
+      <div class="wrap-input">
+        <span class="label-input">Bilirrubina</span>
+        <input class="input" type="email" formControlName="bilirrubina" placeholder="Presente o ausente">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Urobilinógeno -->
+      <div class="wrap-input">
+        <span class="label-input">Urobilinógeno</span>
+        <input class="input" type="email" formControlName="urobilinogeno" placeholder="Presente o ausente">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Leucocitos -->
+      <div class="wrap-input">
+        <span class="label-input">Leucocitos</span>
+        <input class="input" type="email" formControlName="leucocitos" placeholder="Presente o ausente">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Hemoglobina -->
+      <div class="wrap-input">
+        <span class="label-input">Hemoglobina</span>
+        <input class="input" type="email" formControlName="hemoglobina" placeholder="Presente o ausente">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Nitritos -->
+      <div class="wrap-input">
+        <span class="label-input">Nitritos</span>
+        <input class="input" type="email" formControlName="nitritos" placeholder="Positivo o negativo">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Glóbulos rojos -->
+      <div class="wrap-input">
+        <p><span class="label-input" style="font-weight: 500;">Examen microscópico</span></p>
+        <span class="label-input">Glóbulos rojos</span>
+        <input class="input" type="email" formControlName="globulos_rojos" placeholder="celulas / ml">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Cristales -->
+      <div class="wrap-input">
+        <span class="label-input">Cristales</span>
+        <input class="input" type="email" formControlName="cristales" placeholder="Descripción">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Celulas epiteliales y cilindros -->
+      <div class="wrap-input">
+        <span class="label-input">Células epiteliales y cilindros</span>
+        <input class="input" type="email" formControlName="epitelial_cilindro" placeholder="Descripción">
+        <span class="focus-input"></span>
+      </div>
+      <!-- Ácido ascórbico -->
+      <div class="wrap-input">
+        <span class="label-input">Ácido ascórbico</span>
+        <input class="input" type="email" formControlName="ascorbico" placeholder="Presente o ausente">
+        <span class="focus-input"></span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!analysis1 && !analysis2 && !analysis3 && !analysis4 && analysis5">
+      <span class="register-form-title" style="font-size: 24px;">
+        Prueba de embarazo en sangre
+      </span>
+      <!-- GCH -->
+      <div class="wrap-input">
+        <span class="label-input">GCH</span>
+        <input class="input" type="email" formControlName="gch" placeholder="mUI / mL">
+        <span class="focus-input"></span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="analysis1 || analysis2 || analysis3 || analysis4 || analysis5">
+      <button class="button"
+          [disabled]="formSeleccionar.invalid"
+          type="submit">
+          Aceptar
+      </button>
+    </ng-container>
+  </div>
+  <div class="column"></div>
+</div>
+</form>
+</ng-container>

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/recepcion.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column">
+    <h2 class="table-title">Paciente: {{name}} {{lastname}}</h2>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <h2>Próximas citas del paciente</h2>
+    <div id="tableContainer">
+      <table id="dynamicTable">
+          <thead>
+              <tr>
+                  <th class="text">Fecha</th>
+                  <th class="text">Hora</th>
+                  <th class="text">Análisis</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cita of citas">
+              <td class="text" style="font-weight: 350;">{{ cita.date }}</td>
+              <td class="text" style="font-weight: 350;">{{ cita.hour }}</td>
+              <td class="text" style="font-weight: 350;">{{ cita.analysis }}</td>
+            </tr>
+            <tr *ngIf="citas.length === 0" class="emptyRow">
+              <td colspan="3">No hay datos disponibles.</td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+  </div>
+  <div class="column"></div>
+</div>
+

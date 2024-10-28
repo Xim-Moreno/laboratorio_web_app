@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/laboratorista.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column">
+    <span class="register-form-title">
+      Cálculo de comisiones: {{current_month}}, {{current_year}}
+  </span>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <div id="tableContainer">
+      <table id="dynamicTable">
+          <thead>
+              <tr>
+                  <th class="text">Fecha</th>
+                  <th class="text">ID del paciente</th>
+                  <th class="text">Análisis realizado</th>
+                  <th class="text">Comisión</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let historial of comision_historiales">
+              <td class="text" style="font-weight: 350;">{{ historial.date }}</td>
+              <td class="text" style="font-weight: 350;">{{ historial.patient_id }}</td>
+              <td class="text" style="font-weight: 350;">{{ historial.analysis }}</td>
+              <td class="text" style="font-weight: 350;">${{ historial.lab_comision | number: '1.2-2'}}</td>
+            </tr>
+            <tr *ngIf="comision_historiales.length != 0">
+              <td class="text" style="font-weight: 350;" colspan="3">Total:</td>
+              <td class="text" style="font-weight: 350;">${{ comision_total | number: '1.2-2' }}</td>
+            </tr>
+            <tr *ngIf="comision_historiales.length === 0" class="emptyRow">
+              <td colspan="4">No hay datos disponibles.</td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="row">
+  <div class="column"></div>
+  <div class="column" style="text-align: center;">
+    <button (click)="volver()" class="button">Volver</button>
+  </div>
+  <div class="column"></div>
+</div>

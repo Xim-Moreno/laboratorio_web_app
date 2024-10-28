@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/recepcion.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column" style="margin-top: 50px;">
+    <h1 style="font-size: 23px;">Buscar paciente</h1>
+    <form [formGroup]="myForm">
+      <div class="wrap-input" style="z-index: 10;">
+        <input class="input"
+          type="email"
+          formControlName="patient_id"
+          placeholder="ID del paciente">
+        <span class="focus-input"></span>
+      </div>
+      <div *ngIf="myForm.get('patient_id')?.invalid && (myForm.get('patient_id')?.dirty || myForm.get('patient_id')?.touched)">
+        <span class="error-msg">
+            <span *ngIf="myForm.get('patient_id')?.errors?.['minlength']">Debe ingresar un número de usuario válido.</span>
+            <span *ngIf="myForm.get('patient_id')?.errors?.['maxlength']">Debe ingresar un número de usuario válido.</span>
+        </span>
+    </div>
+    </form>
+  </div>
+  <div class="column" style="margin-top: 95px;">
+    <button (click)="buscarPaciente()" class="button" style="height: 15px;line-height: 5px;" [disabled]="myForm.invalid">Buscar</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <div class="container">
+      <h1 style="font-size: 20px;">Citas para el {{current_day}} de {{current_month}} de {{current_year}}</h1>
+      <div id="tableContainer">
+        <table id="dynamicTable">
+            <thead>
+                <tr>
+                    <th class="text">ID</th>
+                    <th class="text">Nombre</th>
+                    <th class="text">Hora</th>
+                    <th class="text">Análisis</th>
+                    <th class="text"></th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cita of citas">
+                <td class="text" style="font-weight: 350;">{{ cita.patient_id }}</td>
+                <td class="text" style="font-weight: 350;">{{ names[cita.patient_id] }}</td>
+                <td class="text" style="font-weight: 350;">{{ cita.hour }}</td>
+                <td class="text" style="font-weight: 350;">{{ cita.analysis }}</td>
+                <td class="text" style="font-weight: 350;">X</td>
+              </tr>
+              <tr *ngIf="citas.length === 0" class="emptyRow">
+                <td colspan="5">No hay datos disponibles.</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
+  <div class="column"></div>
+</div>
+
+<div class="row">
+  <div class="column"></div>
+  <div class="column" style="text-align: center;">
+    <button (click)="goToRegistroPaciente()" class="button">Registrar nuevo paciente</button>
+  </div>
+  <div class="column"></div>
+</div>

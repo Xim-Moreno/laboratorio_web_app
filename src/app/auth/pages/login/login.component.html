@@ -1,0 +1,68 @@
+
+<form style="width:100%;"
+      autocomplete="off"
+      [formGroup]="myForm"
+      (ngSubmit)="login()"
+      >
+
+    <span class="login-form-title">
+        Iniciar sesión
+    </span>
+
+    <!-- Campo de correo electrónico -->
+    <div class="wrap-input">
+      <span class="label-input">Número de usuario</span>
+      <input class="input"
+             type="email"
+             formControlName="number"
+             placeholder="Ingrese su número de usuario">
+      <span class="focus-input"></span>
+  </div>
+
+  <!-- Mensajes de error para el correo electrónico -->
+  <div *ngIf="myForm.get('number')?.invalid && (myForm.get('number')?.dirty || myForm.get('number')?.touched)">
+      <span class="error-msg">
+          <span *ngIf="myForm.get('number')?.errors?.['required']">El número de usuario es obligatorio.</span>
+          <span *ngIf="myForm.get('number')?.errors?.['minlength']">Debe ingresar un número de usuario válido.</span>
+          <span *ngIf="myForm.get('number')?.errors?.['maxlength']">Debe ingresar un número de usuario válido.</span>
+      </span>
+  </div>
+
+  <!-- Campo de contraseña -->
+  <div class="wrap-input">
+    <span class="label-input">Contraseña</span>
+    <input class="input"
+           type="password"
+           formControlName="password"
+           placeholder="Ingrese su contraseña">
+    <span class="focus-input"></span>
+</div>
+
+<!-- Mensajes de error para la contraseña -->
+<div *ngIf="myForm.get('password')?.invalid && (myForm.get('password')?.dirty || myForm.get('password')?.touched)">
+    <span class="error-msg">
+        <span *ngIf="myForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</span>
+        <span *ngIf="myForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 10 caracteres.</span>
+    </span>
+</div>
+
+    <div class="container-login">
+        <div>
+            <button class="button"
+                    [disabled]="myForm.invalid"
+                    type="submit">
+                Iniciar sesión
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <span style="font-family: 'Georama';font-size: 15px;">
+            ¿No tienes cuenta?
+        </span>
+
+        <a routerLink='/auth/register' style="font-family: 'Georama';font-size: 15px;position: relative; z-index: 2;">
+            Crear una aquí
+        </a>
+    </div>
+</form>

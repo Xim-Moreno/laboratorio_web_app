@@ -1,0 +1,16 @@
+@use "./../../../../assets/styles/styles.scss";
+
+.footer-bottom {
+  text-align: right;
+  margin-top: 20px;
+  background-color: styles.$color-principal;
+  height: 40px;
+}
+
+.footer-text{
+  font-size: 15px;
+  font-family: 'Georama';
+  font-weight: 300;
+  color: white;
+  padding: 10px;
+}

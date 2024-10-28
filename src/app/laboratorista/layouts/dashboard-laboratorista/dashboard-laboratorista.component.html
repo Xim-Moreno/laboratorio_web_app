@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/laboratorista.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column" style="margin-top: 50px;">
+    <h1 style="font-size: 23px;">Buscar paciente</h1>
+    <form [formGroup]="myForm">
+      <div class="wrap-input" style="z-index: 10;">
+        <input class="input"
+          type="email"
+          formControlName="patient_id"
+          placeholder="ID del paciente">
+        <span class="focus-input"></span>
+      </div>
+      <div *ngIf="myForm.get('patient_id')?.invalid && (myForm.get('patient_id')?.dirty || myForm.get('patient_id')?.touched)">
+        <span class="error-msg">
+            <span *ngIf="myForm.get('patient_id')?.errors?.['minlength']">Debe ingresar un número de usuario válido.</span>
+            <span *ngIf="myForm.get('patient_id')?.errors?.['maxlength']">Debe ingresar un número de usuario válido.</span>
+        </span>
+    </div>
+    </form>
+  </div>
+  <div class="column" style="margin-top: 95px;">
+    <button (click)="buscarPaciente()" class="button" style="height: 15px;line-height: 5px;" [disabled]="myForm.invalid">Buscar</button>
+  </div>
+  <div class="column" style="text-align: center;">
+    <img (click)="goToComisiones()" src="assets/images/pesos.png" alt="logo" class="logo" style="width: 45px; margin-top: 50px;cursor: pointer;z-index: 1;position: relative;"/>
+    <h1 (click)="goToComisiones()" style="font-size: 25px; text-align: center;cursor: pointer;z-index: 1;position: relative;">Tus comisiones</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <div class="container">
+      <h1 style="font-size: 20px;">Análisis realizados en el mes de {{current_month}}, {{current_year}}</h1>
+      <div id="tableContainer">
+        <table id="dynamicTable">
+            <thead>
+                <tr>
+                    <th class="text">Análisis</th>
+                    <th class="text">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Hemograma completo</th>
+                  <td>{{ analysisSums['Hemograma completo'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Perfil lipídico</th>
+                  <td>{{ analysisSums['Perfil lipidico'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Glucosa en sangre</th>
+                  <td>{{ analysisSums['Glucosa en sangre'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Examen general de orina</th>
+                  <td>{{ analysisSums['Examen general de orina'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Prueba de embarazo en sangre</th>
+                  <td>{{ analysisSums['Prueba de embarazo en sangre'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
+  <div class="column" style="align-content: center;margin-left: 50px;">
+    <button (click)="registrarExamen()" class="button">Registrar examen</button>
+    <button (click)="registrarResultados()" class="button">Registrar resultados</button>
+    <button (click)="generarInforme()" class="button">Generar informe</button>
+  </div>
+</div>

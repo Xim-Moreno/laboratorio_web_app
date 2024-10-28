@@ -1,0 +1,127 @@
+<form [formGroup]="myForm" (ngSubmit)="register_cita()">
+  <div class="row">
+    <div class="column">
+      <h1>Bienvenid&commat;, {{userName}}</h1>
+      <img src="assets/images/medico.png" alt="logo" class="logo"/>
+    </div>
+    <div class="column">
+      <span class="register-form-title">
+        Solicitar examen para paciente
+    </span>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <!-- Campo de paciente -->
+      <div class="wrap-input">
+        <span class="label-input">Número de paciente</span>
+        <input class="input"
+               type="email"
+               formControlName="patient_id"
+               placeholder="ID del paciente para el que se solicita.">
+        <span class="focus-input"></span>
+    </div>
+      <div *ngIf="myForm.get('patient_id')?.invalid && (myForm.get('patient_id')?.dirty || myForm.get('patient_id')?.touched)">
+        <span class="error-msg">
+            <span *ngIf="myForm.get('patient_id')?.errors?.['required']">El número de usuario es obligatorio.</span>
+            <span *ngIf="myForm.get('patient_id')?.errors?.['minlength']">Debe ingresar un número de usuario válido.</span>
+            <span *ngIf="myForm.get('patient_id')?.errors?.['maxlength']">Debe ingresar un número de usuario válido.</span>
+        </span>
+    </div>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <div class="wrap-input">
+        <!-- Campo de examen -->
+        <span class="label-input">Examen</span>
+        <select id="analysis" class="input" formControlName="analysis" (change)="onOptionChange()">
+          <option *ngFor="let option of options" [value]="option.value">
+            {{ option.name }}
+          </option>
+        </select>
+        <span class="focus-input"></span>
+      </div>
+      <!-- Mensaje de error -->
+      <div *ngIf="myForm.get('analysis')?.invalid && (myForm.get('analysis')?.dirty || myForm.get('analysis')?.touched)">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('analysis')?.errors?.['required']">El campo es obligatorio.</span>
+        </span>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <div *ngIf="selectedDescription">
+        <p class="label-input" style="font-size: 12px;">{{ selectedDescription }}</p>
+      </div>
+    </div>
+    <div *ngIf="myForm.get('hour')?.touched">
+      <span class="error-msg">
+        <span *ngIf="myForm.get('hour')?.errors?.['required']">El campo es obligatorio.</span>
+        <span *ngIf="myForm.get('hour')?.errors?.['hourInvalid']">La hora debe estar entre 8 AM y 5 PM.</span>
+      </span>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <!-- Campo de fecha -->
+      <div class="wrap-input">
+        <span class="label-input">Seleccione la fecha en la que desea su cita (Lunes a Viernes)</span>
+        <input class="input"
+          type="date"
+          formControlName="date"
+          placeholder="Las citas son de lunes a viernes">
+        <span class="focus-input"></span>
+      </div>
+      <div *ngIf="myForm.get('date')?.touched">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('date')?.errors?.['required']">El campo es obligatorio.</span>
+          <span *ngIf="myForm.get('date')?.errors?.['weekend']">Las citas se pueden agendar únicamente de Lunes a Viernes.</span>
+        </span>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <!-- Campo de hora -->
+      <div class="wrap-input">
+        <span class="label-input">Seleccione la hora en la que desea su cita (de 8:00 am a 5:00 pm)</span>
+        <input class="input"
+          type="time"
+          formControlName="hour"
+          placeholder="Las citas son de 8 am a 5 pm">
+        <span class="focus-input"></span>
+      </div>
+      <div *ngIf="myForm.get('hour')?.touched">
+        <span class="error-msg">
+          <span *ngIf="myForm.get('hour')?.errors?.['required']">El campo es obligatorio.</span>
+          <span *ngIf="myForm.get('hour')?.errors?.['hourOutOfRange']">La hora debe estar entre las 8:00 AM y las 5:00 PM.</span>
+        </span>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column" style="text-align: center;">
+      <button class="button"
+          [disabled]="myForm.invalid"
+          type="submit">
+          Enviar solicitud
+      </button>
+    </div>
+    <div class="column"></div>
+  </div>
+  </form>
+

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/admin.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column"></div>
+  <div class="column"></div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <div class="container">
+      <h1 style="font-size: 20px;">Análisis realizados en el mes de {{current_month}}, {{current_year}}</h1>
+      <div id="tableContainer">
+        <table id="dynamicTable">
+            <thead>
+                <tr>
+                    <th class="text">Análisis</th>
+                    <th class="text">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Hemograma completo</th>
+                  <td>{{ analysisSums['Hemograma completo'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Perfil lipídico</th>
+                  <td>{{ analysisSums['Perfil lipidico'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Glucosa en sangre</th>
+                  <td>{{ analysisSums['Glucosa en sangre'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Examen general de orina</th>
+                  <td>{{ analysisSums['Examen general de orina'] }}</td>
+                </tr>
+                <tr>
+                  <th class="text" style="font-weight: 350;">Prueba de embarazo en sangre</th>
+                  <td>{{ analysisSums['Prueba de embarazo en sangre'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="column" style="align-content: center;margin-left: 50px;">
+    <button (click)="registroPaciente()" class="button">Registrar paciente</button>
+    <button (click)="registroMedico()" class="button">Registrar médico</button>
+    <button (click)="registroLab()" class="button">Registrar laboratorista</button>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="column">
+    <h1>Bienvenid&commat;, {{userName}}</h1>
+    <img src="assets/images/laboratorista.png" alt="logo" class="logo"/>
+  </div>
+  <div class="column">
+    <span class="register-form-title">
+      Resultados de análisis
+    </span>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="row">
+  <div class="column"></div>
+  <div class="column">
+    <h2>
+      {{ analysis }}
+    </h2>
+    <p class="text"><strong>ID del paciente: </strong>{{ patient_id }}<br>
+    <strong>Fecha de análisis: </strong>{{ date }}<br>
+    <strong>Laboratorista que realizó: </strong>{{ lab_name }}</p>
+    <div class="row" *ngIf="analysis == 'Hemograma completo'">
+      <p class="text"><strong>Recuento de glóbulos rojos: </strong> <span style="color: blue">{{ data['globulos_rojos']}} millones de células / l</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Hombres de 4350 millones a 5650 millones de células / l. <br>
+                                     Mujeres de 3920 millones a 5130 millones de células / l.</span> <br><br>
+      <strong>Recuento de glóbulos blancos: </strong> <span style="color: blue">{{ data['globulos_blancos']}} millones de células / l</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>De 3400 millones a 9600 millones de células / l. </span><br><br>
+      <strong>Recuento de plaquetas: </strong> <span style="color: blue">{{ data['globulos_rojos']}} millones / l</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Hombres de 1350 millones a 3170 millones de células / l. <br>
+                                     Mujeres de 1570 millones a 3710 millones de células / l.</span> <br><br>
+      <strong>Nivel de hemoglobina: </strong> <span style="color: blue">{{ data['globulos_rojos']}} g / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Hombres de 13.2 a 16.6 g / dl. <br>
+                                     Mujeres de 11.6 a 15.0 g / dl.</span> <br><br>
+      <strong>Nivel de hematrocitos: </strong> <span style="color: blue">{{ data['globulos_rojos']}} %</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Hombres del 38.3% al 48.6%. <br>
+                                     Mujeres del 35.5% al 44.9%.</span> <br><br></p>
+    </div>
+    <div class="row" *ngIf="analysis == 'Perfil lipídico'">
+      <p class="text"><strong>Nivel de colesterol total: </strong> <span style="color: blue">{{ data['colesterol']}} mg / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Por debajo de de 200 mg / dl.</span> <br><br>
+      <strong>Nivel de HDL: </strong> <span style="color: blue">{{ data['hdl']}} mg / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>De 40 a 60 mg / dl. </span><br><br>
+      <strong>Nivel de LDL: </strong> <span style="color: blue">{{ data['ldl']}} mg / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Por debajo de 100 mg / dl.</span> <br><br>
+      <strong>Nivel de VLDL: </strong> <span style="color: blue">{{ data['vldl']}} mg / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>De 2 a 30 mg / dl.</span> <br><br>
+      <strong>Nivel de triglicéridos: </strong> <span style="color: blue">{{ data['trigliceridos']}} mg / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Por debajo de 150 mg / dl en adultos.</span> <br><br></p>
+    </div>
+    <div class="row" *ngIf="analysis == 'Glucosa en sangre'">
+      <p class="text"><strong>Nivel de glucemia: </strong> <span style="color: blue">{{ data['glucemia']}} mg / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>De 70 a 99 mg / dl en ayunas.</span> <br><br></p>
+    </div>
+    <div class="row" *ngIf="analysis == 'Examen general de orina'">
+      <p class="text"><strong>Color: </strong> <span style="color: blue">{{ data['color']}}</span><br><br>
+      <strong>Aspecto: </strong> <span style="color: blue">{{ data['aspecto']}}</span><br><br>
+      <strong><span style="color: purple;">- Examen químico</span></strong><br><br>
+      <strong>Densidad: </strong> <span style="color: blue">{{ data['densidad']}} ppm</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>De 1005 a 1035 ppm.</span> <br><br>
+      <strong>Acidez: </strong> <span style="color: blue">pH = {{ data['pH']}} </span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>pH entre 5.5 y 7.0.</span> <br><br>
+      <strong>Nivel de glucosa: </strong> <span style="color: blue">{{ data['glucosa']}} mg  / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Menor a 180 mg / dl.</span> <br><br>
+      <strong>Nivel de proteínas: </strong> <span style="color: blue">{{ data['proteinas']}} mg  / dl</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Menor a 10 mg / dl.</span> <br><br>
+      <strong>Presencia de cetonas: </strong> <span style="color: blue">{{ data['cetonas']}}</span><br><br>
+      <strong>Presencia de bilirrubina: </strong> <span style="color: blue">{{ data['bilirrubina']}}</span><br><br>
+      <strong>Presencia de urobilinógeno: </strong> <span style="color: blue">{{ data['urobilinogeno']}}</span><br><br>
+      <strong>Presencia de leucocitos: </strong> <span style="color: blue">{{ data['leucocitos']}}</span><br><br>
+      <strong>Presencia de hemoglobina: </strong> <span style="color: blue">{{ data['hemoglobina']}}</span><br><br>
+      <strong>Presencia de nitritos: </strong> <span style="color: blue">{{ data['nitritos']}}</span><br><br>
+      <strong><span style="color: purple;">- Examen microscópico</span></strong><br><br>
+      <strong>Recuento de glóbulos rojos: </strong> <span style="color: blue">{{ data['globulos_rojos']}} células / ml</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Menos de 10 000 células / ml.</span> <br><br>
+      <strong>Presencia de cristales: </strong> <span style="color: blue">{{ data['cristales']}}</span><br><br>
+      <strong>Presencia de células epiteliales y cilindros: </strong> <span style="color: blue">{{ data['epitelial_cilindro']}}</span><br><br>
+      <strong>Ácido ascórbico: </strong> <span style="color: blue">{{ data['ascorbico']}}</span><br><br>
+    </p>
+    </div>
+    <div class="row" *ngIf="analysis == 'Prueba de embarazo en sangre'">
+      <p class="text"><strong>Nivel de GCH: </strong> <span style="color: blue">{{ data['gch']}} mUI / mL</span><br>
+      <span style='font-weight: 400;'>Niveles de referencia: </span> <br>
+      <span style='font-weight: 300'>Más de 5 mUI / mL indican embarazo.</span> <br><br></p>
+    </div>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="row">
+  <div class="column"></div>
+  <div class="column" style="text-align: center;">
+    <button (click)="volver()" class="button">Volver</button>
+  </div>
+  <div class="column"></div>
+</div>
+
